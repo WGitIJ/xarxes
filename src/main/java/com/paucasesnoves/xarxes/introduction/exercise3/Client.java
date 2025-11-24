@@ -1,9 +1,11 @@
 package com.paucasesnoves.xarxes.introduction.exercise3;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -14,7 +16,7 @@ public class Client {
         try(Socket socket = new Socket("localhost", 2222)){
             System.out.println("Conectado al servidor en " + socket.getInetAddress().getHostAddress());
 
-            BufferedWriter writer = new BufferedWriter(new java.io.OutputStreamWriter(socket.getOutputStream()));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             System.out.print("Introduce el nombre de la calle: ");
             String street = scanner.nextLine();
             System.out.print("Introduce el código postal: ");
@@ -27,7 +29,11 @@ public class Client {
             Address address = new Address(street, zipCode, country, number);
 
             //Generate a JSON representation of the address object
+            ObjectMapper mapper = new ObjectMapper();
+
             File file = new File("address.json");
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file,address);
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);
