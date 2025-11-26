@@ -3,10 +3,8 @@ package com.paucasesnoves.xarxes.introduction.exercise4;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Server {
-    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         try(ServerSocket server = new ServerSocket(2000)){
             System.out.println("Servidor inicializado. Esperando al cliente...");

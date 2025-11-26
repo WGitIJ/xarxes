@@ -13,6 +13,7 @@ public class Client {
         try(Socket socket = new Socket("localhost",2222)) {
             System.out.println("Cliente conectado al servidor en " + socket.getInetAddress().getHostAddress());
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            System.out.println("Escribe un mensaje para enviar al servidor:");
             String message = scanner.nextLine();
             writer.write(message);
             writer.newLine();
