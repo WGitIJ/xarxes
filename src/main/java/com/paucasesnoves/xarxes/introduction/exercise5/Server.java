@@ -9,8 +9,7 @@ public class Server {
         try(ServerSocket server = new ServerSocket(1500)) {
             System.out.println("Servidor inicializado. Esperando al cliente...");
 
-            Socket socket = new Socket();
-            server.accept();
+            Socket socket = server.accept();
             System.out.println("Cliente conectado desde " + server.getInetAddress().getHostAddress());
 
             // Leer el nombre del archivo solicitado por el cliente
